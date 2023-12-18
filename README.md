@@ -1,14 +1,10 @@
-# Grounding Language Models to Images for Multimodal Inputs and Outputs
+# Unified Embeddings for Multimodal Retrieval via Frozen LLMs
 
-<p align="center">
-<img alt="FROMAGe model architecture" src="./teaser.png" width="90%">
-<br/><br/>
-<img alt="FROMAGe chat animation" src="./teaser_gif.gif" width="40%">
-</p>
 
-This repository hosts the code and model weights for FROMAGe.
+This repository contains the code used for the paper: Unified Embeddings for Multimodal Retrieval via Frozen LLMs
 
-[Paper](https://arxiv.org/abs/2301.13823) | [Project Webpage](https://jykoh.com/fromage) | [Demo](https://huggingface.co/spaces/jykoh/fromage)
+Ziyang Wang, Heba Elfardy, Markus Dreyer, Kevin Small, Mohit Bansal.
+
 
 
 ## Setup instructions
