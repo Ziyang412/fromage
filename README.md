@@ -37,7 +37,7 @@ The pruned UNIMUR model weights (linear layers and [RET] embedding) are small an
 
 ### Precomputed Embeddings For Image Retrieval
 
-We follow FROMAGe [URL](https://arxiv.org/abs/2301.13823) which leverages the visual embedding of CC3M images for retrieval. Please follow their instructions, download the files, and place `cc3m_embeddings.pkl` into the `unimur_model/` directory.
+We follow [FROMAGe](https://arxiv.org/abs/2301.13823) which leverages the visual embedding of CC3M images for retrieval. Please follow their instructions, download the files, and place `cc3m_embeddings.pkl` into the `unimur_model/` directory.
 
 
 ## Training
@@ -81,9 +81,22 @@ As UNIMUR only consists of a few pretrained linear layers and the `[RET]` embedd
 
 ## Evaluation
 
-We provide an evaluation script to reproduce our results on contextual image retrieval on Visual Storytelling (results of Table 1 of our paper). The script can be run from `evals/eval_vist_retrieval.py`. There is also a iPython notebook version (`VIST_Contextual_Image_Retrieval.ipynb`) in the same directory.
+### Preparing Evaluation Datasets
+We evaluate our model on [Visual Dialog](https://visualdialog.org/) and [MMDialog](https://github.com/victorsungo/MMDialog) dataset. 
+
+For the VisDial dataset, please download the validation annotation from [here](https://www.dropbox.com/s/ibs3a0zhw74zisc/visdial_1.0_val.zip?dl=0) and the raw image from [here](https://www.dropbox.com/s/twmtutniktom7tu/VisualDialog_val2018.zip?dl=0) and Extract everything to the `VisualDialog` folder. 
+
+For the MMDialog dataset, please follow the download instructions [here](https://github.com/victorsungo/MMDialog). 
+
+
+
+
+We provide an evaluation script to reproduce our results on contextual image retrieval in Visual Storytelling (results of Table 1 of our paper). The script can be run from `evals/eval_vist_retrieval.py`. There is also an iPython notebook version (`VIST_Contextual_Image_Retrieval.ipynb`) in the same directory.
 
 Similarly, we provide scripts to reproduce the text generation and image retrieval results on VisDial (presented in Table 2 of our paper). The script for VisDial text generation can be run from `evals/eval_visdial_generation.py` (or through the notebook version, `VisDial_Inference_IT2T_Generation.ipynb`). This reports the NDCG, MRR, and R@k scores for VisDial.
 
 The results for image retrieval can be reproduced by running the `evals/eval_visdial_retrieval.py` script (or through the notebook version `VisDial_Inference_T2I_Retrieval.ipynb`), which reports R@k scores.
+
+## License
+
 
