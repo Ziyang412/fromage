@@ -9,34 +9,35 @@ Ziyang Wang, Heba Elfardy, Markus Dreyer, Kevin Small, Mohit Bansal.
 In this work, We present Unified Embeddings for Multimodal Retrieval (UNIMUR), a simple but effective approach that embeds multimodal inputs and retrieves visual and textual outputs via frozen Large Language Models (LLMs). Specifically, UNIMUR jointly retrieves multimodal outputs via a unified multimodal embedding and applies dual alignment training to account for both visual and textual semantics. Thus, unlike previous approaches, UNIMUR significantly reduces LLM’s modality bias towards generating text-only outputs. Meanwhile, the proposed unified multimodal embedding mitigates the inconsistency between visual and textual outputs and provides coherent multimodal outputs. Furthermore, benefiting from the joint training of visual and textual semantics, UNIMUR also achieves strong image/text retrieval ability.
 
 
-## Setup instructions
+## Setup 
 
-### Environment
-Set up a new virtualenv, and install required libraries:
+### Install Dependencies
+
+1. (Optional) Set up a new conda environment, and install the required libraries:
 ```
-python -m venv venv
-source venv/bin/activate
+conda create -n unimur python=3.8
+conda activate unimur
+```
+
+2. Install the required libraries
+```
 pip install -r requirements.txt
 ```
 
-Add the `fromage` library to PYTHONPATH:
+
+3. Add the `unimur` library to PYTHONPATH:
 ```
-export PYTHONPATH=$PYTHONPATH:/home/path/to/fromage/
+export PYTHONPATH=$PYTHONPATH:/home/path/to/unimur/
 ```
 
 ### Pretrained Checkpoints
 
-The FROMAGe model weights (linear layers and [RET] embedding) are small (around 11MB), and are included in this Git repo. They will be in the `fromage_model/` folder after cloning. The checkpoint and model config in `fromage_model/` reproduce the results reported in our paper.
+The pruned UNIMUR model weights (linear layers and [RET] embedding) are small and are included in this Git repo. They will be in the `unimur_model/` folder after cloning. The checkpoint and model config in `unimur_model/` reproduce the results reported in our paper.
 
-We have also included a second model trained with a stronger visual linear layer (4 visual tokens instead of 1), located at `fromage_model/fromage_vis4`. This model generally does better on dialogue settings and does not require as much tuning of inference time hyperparameters, as it is able to better represent more complex images.
 
 ### Precomputed Embeddings For Image Retrieval
 
-The visual embeddings for Conceptual Captions images with valid URLs are precomputed and stored at this [URL](https://drive.google.com/file/d/1wMojZNqEwApNlsCZVvSgQVtZLgbeLoKi/view?usp=share_link). These are used to enable the model to retrieve images. The embeddings take up around 3GB, and are compatible with both model configs we provide. Download the files and place `cc3m_embeddings.pkl` into the `fromage_model/` directory.
-
-If you wish to precompute these embeddings for a different set of image URLs or for a different model, edit `fromage/extract_img_embs.py` with the list of image URLs and run it:
-
-```python fromage/extract_img_embs.py```
+We follow FROMAGe [URL](https://arxiv.org/abs/2301.13823) which leverages the visual embedding of CC3M images for retrieval. Please follow their instructions, download the files, and place `cc3m_embeddings.pkl` into the `unimur_model/` directory.
 
 
 ## Inference
