@@ -84,18 +84,28 @@ As UNIMUR only consists of a few pretrained linear layers and the `[RET]` embedd
 ### Preparing Evaluation Datasets
 We evaluate our model on [Visual Dialog](https://visualdialog.org/) and [MMDialog](https://github.com/victorsungo/MMDialog) dataset. 
 
-For the VisDial dataset, please download the validation annotation from [here](https://www.dropbox.com/s/ibs3a0zhw74zisc/visdial_1.0_val.zip?dl=0) and the raw image from [here](https://www.dropbox.com/s/twmtutniktom7tu/VisualDialog_val2018.zip?dl=0) and Extract everything to the `VisualDialog` folder. 
+For the VisDial dataset (val split), please download the validation annotation from [here](https://www.dropbox.com/s/ibs3a0zhw74zisc/visdial_1.0_val.zip?dl=0) and the raw image from [here](https://www.dropbox.com/s/twmtutniktom7tu/VisualDialog_val2018.zip?dl=0) and Extract everything to the `VisualDialog` folder. 
 
-For the MMDialog dataset, please follow the download instructions [here](https://github.com/victorsungo/MMDialog). 
-
-
+For the MMDialog dataset (test split), please follow the download instructions [here](https://github.com/victorsungo/MMDialog). 
 
 
-We provide an evaluation script to reproduce our results on contextual image retrieval in Visual Storytelling (results of Table 1 of our paper). The script can be run from `evals/eval_vist_retrieval.py`. There is also an iPython notebook version (`VIST_Contextual_Image_Retrieval.ipynb`) in the same directory.
+### Evaluating on multiple tasks
 
-Similarly, we provide scripts to reproduce the text generation and image retrieval results on VisDial (presented in Table 2 of our paper). The script for VisDial text generation can be run from `evals/eval_visdial_generation.py` (or through the notebook version, `VisDial_Inference_IT2T_Generation.ipynb`). This reports the NDCG, MRR, and R@k scores for VisDial.
+We provide an evaluation script to reproduce our results on dialogue-to-image retrieval in Visual Dialog (results of Table 3 of our paper). Please change the dataset/checkpoint directory to your configuration. 
 
-The results for image retrieval can be reproduced by running the `evals/eval_visdial_retrieval.py` script (or through the notebook version `VisDial_Inference_T2I_Retrieval.ipynb`), which reports R@k scores.
+```bash
+python evals/eval_visdialog.py
+```
+
+Similarly, we provide scripts to reproduce the multimodal response retrieval results on MMDialog (presented in Table 1 of our paper). To speed up the evaluation process (MMDialog applies different candidate image pools for each dialog), we first extract the visual embedding of all test images using the extract_vis_emb.py (configure your own data/model path). Then, we use the eval_mmdialog.py to reproduce the multimodal response retrieval results (configure the path to your own data/model/saved embedding). 
+
+```bash
+
+python unimur/extract_vis_emb.py
+
+python evals/eval_mmdialog.py
+```
+
 
 ## License
 
