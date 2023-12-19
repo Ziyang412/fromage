@@ -8,6 +8,7 @@ Ziyang Wang, Heba Elfardy, Markus Dreyer, Kevin Small, Mohit Bansal.
 ## Overview
 In this work, We present Unified Embeddings for Multimodal Retrieval (UNIMUR), a simple but effective approach that embeds multimodal inputs and retrieves visual and textual outputs via frozen Large Language Models (LLMs). Specifically, UNIMUR jointly retrieves multimodal outputs via a unified multimodal embedding and applies dual alignment training to account for both visual and textual semantics. Thus, unlike previous approaches, UNIMUR significantly reduces LLM’s modality bias towards generating text-only outputs. Meanwhile, the proposed unified multimodal embedding mitigates the inconsistency between visual and textual outputs and provides coherent multimodal outputs. Furthermore, benefiting from the joint training of visual and textual semantics, UNIMUR also achieves strong image/text retrieval ability.
 
+<img src="./framework.png" alt="teaser image" width="800"/>
 
 ## Setup 
 
@@ -94,7 +95,7 @@ For the MMDialog dataset (test split), please follow the download instructions [
 We provide an evaluation script to reproduce our results on dialogue-to-image retrieval in Visual Dialog (results of Table 3 of our paper). Please change the dataset/checkpoint directory to your configuration. 
 
 ```bash
-python evals/eval_visdialog.py
+python evals/eval_visdial.py
 ```
 
 Similarly, we provide scripts to reproduce the multimodal response retrieval results on MMDialog (presented in Table 1 of our paper). To speed up the evaluation process (MMDialog applies different candidate image pools for each dialog), we first extract the visual embedding of all test images using the extract_vis_emb.py (configure your own data/model path). Then, we use the eval_mmdialog.py to reproduce the multimodal response retrieval results (configure the path to your own data/model/saved embedding). 
